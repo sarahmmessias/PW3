@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<body>
+    <h2>Trabalhando com request XMLHttpRequest</h2>
+    <button type="button" onclick="loadXMLDoc()">Atualizar conteudo</button>
+    <input type="text" id="nome" value="Digite o seu nome">
+
+    <div id="message"></div>
+
+<script>
+        
+    function loadXMLDoc() {
+        try {
+            var xhttp = new XMLHttpRequest();
+            serverPage = 'request.php?nome=' + document.getElementById("nome").value;
+            xhttp.open("GET", serverPage, true);
+            xhttp.send();
+            xhttp.onreadystatechange = function(){
+                if (this.readyState == 4 && this.status == 200){
+                    document.getElementById("message").innerHTML = this.responseText;
+                } 
+            };
+                          
+        } catch (e){
+            alert(e);
+        }
+    }
+
+</script>
+
+</body>
+</html>
